@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Simplified "C" Character Logo Component
+const SingleCLogo = ({ className = "w-10 h-10 text-2xl" }) => (
+  <div className={`${className} bg-[#8b5a2b] text-white rounded-xl flex items-center justify-center font-black shadow-md font-sans leading-none select-none`}>
+    C
+  </div>
+);
+
 const LandingPage = ({ setView }) => {
   // Slideshow 1 State: Food Pickup Slideshow
   const [pickupIndex, setPickupIndex] = useState(0);
@@ -31,10 +38,10 @@ const LandingPage = ({ setView }) => {
     <div className="min-h-screen bg-[#faf8f5] font-sans text-[#3e2723] flex flex-col overflow-x-hidden selection:bg-[#8b5a2b] selection:text-white">
       
       {/* 1. NAVIGATION BAR */}
-      <nav className="flex justify-between items-center px-6 md:px-12 py-6 bg-white border-b border-stone-200/60 sticky top-0 z-50 shadow-sm backdrop-blur-md bg-white/90">
-        <div className="flex items-center gap-2">
-          <h1 className="text-3xl font-black tracking-tight lowercase text-[#3e2723]">bitee</h1>
-          <span className="text-[10px] bg-[#8b5a2b]/10 text-[#8b5a2b] px-2 py-0.5 rounded-full font-bold tracking-wider uppercase">Ecosystem</span>
+      <nav className="flex justify-between items-center px-6 md:px-12 py-4 bg-white/90 border-b border-stone-200/60 sticky top-0 z-50 shadow-sm backdrop-blur-md">
+        <div className="flex items-center gap-3">
+          <SingleCLogo className="w-8 h-8 text-xl" />
+          <h1 className="text-3xl font-black tracking-tight lowercase text-[#3e2723] mt-1">bitee</h1>
         </div>
         <button 
           onClick={() => window.location.href = "mailto:support@bitee.in"}
@@ -73,33 +80,17 @@ const LandingPage = ({ setView }) => {
         >
           Experience complex logistical coordination simplified down to a single click. From local culinary crafters directly to your domain.
         </motion.p>
-
-        {/* Hero Quick Animations */}
-        <div className="flex flex-col sm:flex-row gap-6 w-full justify-center max-w-md">
-          <motion.div 
-            whileHover={{ scale: 1.02 }} className="bg-white p-4 rounded-2xl shadow-sm border border-stone-200/80 flex items-center gap-4 text-left"
-          >
-            <div className="p-3 bg-[#faf8f5] rounded-xl text-[#8b5a2b] font-black">⚡</div>
-            <div>
-              <p className="font-bold text-sm">Lightning Delivery</p>
-              <p className="text-xs text-stone-500">Intelligent transit routing</p>
-            </div>
-          </motion.div>
-          <motion.div 
-            whileHover={{ scale: 1.02 }} className="bg-white p-4 rounded-2xl shadow-sm border border-stone-200/80 flex items-center gap-4 text-left"
-          >
-            <div className="p-3 bg-[#faf8f5] rounded-xl text-[#8b5a2b] font-black">🍳</div>
-            <div>
-              <p className="font-bold text-sm">Fresh & Secure</p>
-              <p className="text-xs text-stone-500">Thermal-sealed handling</p>
-            </div>
-          </motion.div>
-        </div>
       </header>
 
-      {/* 3. SCROLL SLIDESHOW 1: HUMAN PICKING FOOD FROM TABLE */}
-      <section className="bg-white py-24 border-t border-stone-200/60">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      {/* 3. SCROLL SLIDESHOW 1: BACKGROUND VIDEO WITH FOOD PICKUP */}
+      <section className="relative py-24 border-t border-stone-200/60 overflow-hidden">
+        {/* Looping Background Video */}
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-30">
+          <source src="/videos/food-pickup.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-white/80 z-0 backdrop-blur-[2px]"></div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -108,7 +99,7 @@ const LandingPage = ({ setView }) => {
           >
             <span className="text-xs font-bold text-[#8b5a2b] uppercase tracking-widest block mb-2">Phase One: Culinary Craft</span>
             <h3 className="text-3xl md:text-4xl font-black text-[#3e2723] mb-6">Sourced From Elegant Tables</h3>
-            <p className="text-stone-600 leading-relaxed mb-6">
+            <p className="text-stone-700 font-medium leading-relaxed mb-6">
               The journey begins at the table. Our culinary partners focus entirely on the art of taste, curating recipes that stand out. When a meal is completed, it is staged perfectly for safe transfer—capturing baseline freshness before transit starts.
             </p>
             <div className="flex gap-2">
@@ -116,7 +107,7 @@ const LandingPage = ({ setView }) => {
                 <button 
                   key={idx} 
                   onClick={() => setPickupIndex(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 ${idx === pickupIndex ? 'w-8 bg-[#8b5a2b]' : 'w-2 bg-stone-200'}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${idx === pickupIndex ? 'w-8 bg-[#8b5a2b]' : 'w-2 bg-stone-300'}`}
                 />
               ))}
             </div>
@@ -127,9 +118,9 @@ const LandingPage = ({ setView }) => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-[#faf8f5] p-8 md:p-12 rounded-3xl border border-stone-200 flex flex-col justify-between min-h-[320px] shadow-sm relative overflow-hidden"
+            className="bg-white/90 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-[#8b5a2b]/20 flex flex-col justify-between min-h-[320px] shadow-xl relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 p-8 text-8xl font-black text-stone-200/40 select-none">01</div>
+            <div className="absolute top-0 right-0 p-8 text-8xl font-black text-stone-200/50 select-none">01</div>
             <AnimatePresence mode="wait">
               <motion.div
                 key={pickupIndex}
@@ -141,26 +132,31 @@ const LandingPage = ({ setView }) => {
               >
                 <div className="w-12 h-12 bg-[#3e2723] rounded-xl flex items-center justify-center text-white font-bold text-xl">🍽️</div>
                 <h4 className="text-xl font-bold text-[#3e2723]">{pickupSlides[pickupIndex].title}</h4>
-                <p className="text-stone-600 text-sm leading-relaxed">{pickupSlides[pickupIndex].desc}</p>
+                <p className="text-stone-600 text-sm leading-relaxed font-medium">{pickupSlides[pickupIndex].desc}</p>
               </motion.div>
             </AnimatePresence>
-            <div className="text-xs font-bold text-stone-400 mt-6">Automated Visual Pipeline Feed</div>
+            <div className="text-xs font-bold text-[#8b5a2b] mt-6">Automated Visual Pipeline Feed</div>
           </motion.div>
         </div>
       </section>
 
-      {/* 4. SCROLL SLIDESHOW 2: DRIVER DELIVERING FOOD WITH LOGO */}
-      <section className="py-24 bg-[#faf8f5] border-t border-stone-200/60">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      {/* 4. SCROLL SLIDESHOW 2: BACKGROUND VIDEO WITH DELIVERY DRIVER */}
+      <section className="relative py-24 border-t border-stone-200/60 overflow-hidden">
+        {/* Looping Background Video */}
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-40">
+          <source src="/videos/delivery.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-[#3e2723]/90 z-0 backdrop-blur-[2px]"></div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           
-          {/* Interactive Slideshow Box First on Desktop */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-white p-8 md:p-12 rounded-3xl border border-stone-200 flex flex-col justify-between min-h-[320px] shadow-sm relative overflow-hidden order-last md:order-first"
+            className="bg-[#faf8f5]/95 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-stone-200 flex flex-col justify-between min-h-[320px] shadow-xl relative overflow-hidden order-last md:order-first"
           >
-            <div className="absolute top-0 right-0 p-8 text-8xl font-black text-stone-200/40 select-none">02</div>
+            <div className="absolute top-0 right-0 p-8 text-8xl font-black text-stone-200/60 select-none">02</div>
             <AnimatePresence mode="wait">
               <motion.div
                 key={deliveryIndex}
@@ -170,12 +166,12 @@ const LandingPage = ({ setView }) => {
                 transition={{ duration: 0.4 }}
                 className="space-y-4 relative z-10"
               >
-                <div className="w-12 h-12 bg-[#8b5a2b] rounded-xl flex items-center justify-center text-white font-bold text-xl">🛵</div>
+                <SingleCLogo className="w-12 h-12 text-2xl" />
                 <h4 className="text-xl font-bold text-[#3e2723]">{deliverySlides[deliveryIndex].title}</h4>
-                <p className="text-stone-600 text-sm leading-relaxed">{deliverySlides[deliveryIndex].desc}</p>
+                <p className="text-stone-600 text-sm leading-relaxed font-medium">{deliverySlides[deliveryIndex].desc}</p>
               </motion.div>
             </AnimatePresence>
-            <div className="text-xs font-bold text-stone-400 mt-6">Transit Fleet Interface Update</div>
+            <div className="text-xs font-bold text-[#8b5a2b] mt-6">Transit Fleet Interface Update</div>
           </motion.div>
 
           <motion.div 
@@ -183,10 +179,11 @@ const LandingPage = ({ setView }) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="text-white"
           >
-            <span className="text-xs font-bold text-[#8b5a2b] uppercase tracking-widest block mb-2">Phase Two: Secure Logistics</span>
-            <h3 className="text-3xl md:text-4xl font-black text-[#3e2723] mb-6">The Bitee Fleet Identity</h3>
-            <p className="text-stone-600 leading-relaxed mb-6">
+            <span className="text-xs font-bold text-[#f5deb3] uppercase tracking-widest block mb-2">Phase Two: Secure Logistics</span>
+            <h3 className="text-3xl md:text-4xl font-black mb-6">The Bitee Fleet Identity</h3>
+            <p className="text-stone-300 leading-relaxed mb-6 font-medium">
               Our transit architecture relies on real-world clarity. Every single delivery partner operates under a standardized fleet identity, wearing our signature deep-brown t-shirt featuring the custom Bitee emblem. This guarantees security, instant recognition at commercial checkpoints, and accountability.
             </p>
             <div className="flex gap-2">
@@ -194,7 +191,7 @@ const LandingPage = ({ setView }) => {
                 <button 
                   key={idx} 
                   onClick={() => setDeliveryIndex(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 ${idx === deliveryIndex ? 'w-8 bg-[#8b5a2b]' : 'w-2 bg-stone-200'}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${idx === deliveryIndex ? 'w-8 bg-[#f5deb3]' : 'w-2 bg-stone-600'}`}
                 />
               ))}
             </div>
@@ -215,104 +212,113 @@ const LandingPage = ({ setView }) => {
             <div className="inline-block bg-[#3e2723]/5 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest text-[#3e2723]">
               Engineering Origins
             </div>
-            <h3 className="text-3xl md:text-5xl font-black text-[#3e2723]">Implemented by Cognisys Soft Services</h3>
+            <h3 className="text-3xl md:text-5xl font-black text-[#3e2723]">Implemented by Cognisys IT Solutions</h3>
             <div className="w-16 h-1 bg-[#8b5a2b] mx-auto my-4 rounded-full"></div>
-            <p className="text-stone-600 text-lg leading-relaxed text-justify md:text-center">
-              The Bitee ecosystem was engineered and implemented from the ground up by <strong>Cognisys Soft Services</strong>. Designed as a highly scalable enterprise solution, Cognisys deployed advanced database modeling, automated fulfillment matching algorithms, and streamlined edge interfaces to build a seamless infrastructure. What began as an optimization study for cloud logistics evolved into a fully robust food delivery engine capable of processing micro-transactions and automated spatial assignments in real-time.
+            <p className="text-stone-600 text-lg leading-relaxed text-justify md:text-center font-medium">
+              The Bitee ecosystem was engineered and implemented from the ground up by <strong>Cognisys IT Solutions</strong>. Designed as a highly scalable enterprise solution, Cognisys deployed advanced database modeling, automated fulfillment matching algorithms, and streamlined edge interfaces to build a seamless infrastructure. What began as an optimization study for cloud logistics evolved into a fully robust food delivery engine capable of processing micro-transactions and automated spatial assignments in real-time.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* 6. ECOSYSTEM ARCHITECTURE & APP FUNCTIONALITY */}
-      <section className="bg-[#1a100c] text-white py-24 border-t border-stone-900">
+      {/* 6. APP ECOSYSTEM GRID (Zomato App Layout Style) */}
+      <section className="bg-[#faf8f5] py-24 border-t border-stone-200">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#f5deb3]">System Topology</span>
-            <h3 className="text-3xl md:text-4xl font-black mt-2">How the Bitee Ecosystem Connects</h3>
-            <p className="text-stone-400 text-sm mt-4 max-w-xl mx-auto">Three decoupled applications communicating with a singular cloud relational database repository.</p>
+            <h3 className="text-4xl font-black tracking-tight text-[#3e2723]">bitee ecosystem</h3>
+            <p className="text-stone-500 uppercase tracking-widest text-sm mt-4 font-bold">Powering Hyper-Local Logistics</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Pillar 1 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              className="bg-[#271816] p-8 rounded-2xl border border-stone-800 flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-3xl">📱</span>
-                <h4 className="text-xl font-bold mt-4 mb-2 text-[#f5deb3]">Customer Interface</h4>
-                <p className="text-stone-400 text-sm leading-relaxed">
-                  A fluid application interface engineered for instantaneous item discovery, real-time status fetching, cart caching, and spatial tracking coordinates.
-                </p>
-              </div>
-              <div className="text-xs font-black tracking-widest uppercase text-[#8b5a2b] mt-6">Play Store Delivery</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Customer App Card */}
+            <motion.div whileHover={{ y: -5 }} className="bg-white p-8 rounded-3xl shadow-sm border border-stone-200 text-center flex flex-col items-center">
+              <SingleCLogo className="w-20 h-20 text-4xl mb-6 shadow-lg" />
+              <h4 className="text-2xl font-black text-[#3e2723] mb-2">Bitee</h4>
+              <p className="text-stone-500 text-sm mb-6 px-4">Instant item discovery and real-time spatial tracking for your cravings.</p>
+              <button className="text-[#8b5a2b] font-bold text-sm hover:underline">Explore App &rarr;</button>
             </motion.div>
 
-            {/* Pillar 2 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-              className="bg-[#271816] p-8 rounded-2xl border border-stone-800 flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-3xl">🏪</span>
-                <h4 className="text-xl font-bold mt-4 mb-2 text-[#f5deb3]">Restaurant Operations</h4>
-                <p className="text-stone-400 text-sm leading-relaxed">
-                  Decoupled terminal software for merchants. Real-time persistent sockets instantly push incoming customer tickets directly into kitchen tracking monitors.
-                </p>
-              </div>
-              <div className="text-xs font-black tracking-widest uppercase text-[#8b5a2b] mt-6">Merchant Terminal</div>
+            {/* Merchant App Card */}
+            <motion.div whileHover={{ y: -5 }} className="bg-white p-8 rounded-3xl shadow-sm border border-stone-200 text-center flex flex-col items-center">
+              <div className="w-20 h-20 bg-[#3e2723] text-white rounded-xl flex items-center justify-center font-black text-4xl shadow-lg mb-6 leading-none">M</div>
+              <h4 className="text-2xl font-black text-[#3e2723] mb-2">Merchant</h4>
+              <p className="text-stone-500 text-sm mb-6 px-4">Real-time terminal software to instantly push incoming customer tickets.</p>
+              <button className="text-[#8b5a2b] font-bold text-sm hover:underline">Explore App &rarr;</button>
             </motion.div>
 
-            {/* Pillar 3 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-              className="bg-[#271816] p-8 rounded-2xl border border-stone-800 flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-3xl">💼</span>
-                <h4 className="text-xl font-bold mt-4 mb-2 text-[#f5deb3]">Administrative Dashboard</h4>
-                <p className="text-stone-400 text-sm leading-relaxed">
-                  Our private internal command center (this web terminal). Allows complete visibility over total transactions, gross platform volumes, and active merchant registries.
-                </p>
-              </div>
-              <div className="text-xs font-black tracking-widest uppercase text-[#8b5a2b] mt-6">Secure Web Core</div>
+            {/* Delivery App Card */}
+            <motion.div whileHover={{ y: -5 }} className="bg-white p-8 rounded-3xl shadow-sm border border-stone-200 text-center flex flex-col items-center">
+              <div className="w-20 h-20 bg-stone-800 text-white rounded-xl flex items-center justify-center font-black text-4xl shadow-lg mb-6 leading-none">D</div>
+              <h4 className="text-2xl font-black text-[#3e2723] mb-2">Delivery</h4>
+              <p className="text-stone-500 text-sm mb-6 px-4">Optimized transit application with intelligent routing and earning tracking.</p>
+              <button className="text-[#8b5a2b] font-bold text-sm hover:underline">Explore App &rarr;</button>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* 7. DETAILED ZOMATO-INSPIRED FOOTER STRUCTURE */}
+      {/* 7. APP DOWNLOAD SECTION */}
+      <section className="bg-white py-20 border-t border-stone-200">
+        <div className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
+          <div className="flex-1 text-center md:text-left">
+            <h3 className="text-4xl font-black text-[#3e2723] mb-4">Download the app now!</h3>
+            <p className="text-stone-600 text-lg mb-8 font-medium">Experience seamless online ordering and live tracking only on the Bitee app.</p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <button className="bg-black text-white flex items-center justify-center gap-3 px-6 py-3 rounded-xl hover:bg-stone-800 transition">
+                <span className="text-2xl">🍎</span>
+                <div className="text-left">
+                  <div className="text-[10px] uppercase tracking-wider text-stone-300">Download on the</div>
+                  <div className="font-bold text-lg leading-tight">App Store</div>
+                </div>
+              </button>
+              <button className="bg-black text-white flex items-center justify-center gap-3 px-6 py-3 rounded-xl hover:bg-stone-800 transition">
+                <span className="text-2xl">▶️</span>
+                <div className="text-left">
+                  <div className="text-[10px] uppercase tracking-wider text-stone-300">Get it on</div>
+                  <div className="font-bold text-lg leading-tight">Google Play</div>
+                </div>
+              </button>
+            </div>
+          </div>
+          
+          {/* QR Code Placeholder Box */}
+          <div className="w-48 h-48 bg-[#faf8f5] border-2 border-dashed border-stone-300 rounded-2xl flex flex-col items-center justify-center shadow-sm">
+            <span className="text-4xl mb-2">📱</span>
+            <p className="text-xs font-bold text-stone-500 text-center px-4">Scan QR to<br/>download app</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. DETAILED FOOTER */}
       <footer className="bg-[#110a08] text-white pt-16 pb-8 px-6 md:px-16 border-t border-stone-900">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
-            <h2 className="text-4xl font-black tracking-tight lowercase">bitee</h2>
+            <div className="flex items-center gap-3">
+              <SingleCLogo className="w-8 h-8 text-xl" />
+              <h2 className="text-4xl font-black tracking-tight lowercase mt-1">bitee</h2>
+            </div>
             <div className="text-xs text-stone-500 font-mono">Build Verification Version: 2.1.0-MVP</div>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-16">
-            {/* Column 1 */}
             <div>
               <h3 className="font-bold text-xs uppercase tracking-widest text-[#f5deb3] mb-4">Corporate</h3>
               <ul className="space-y-3 text-stone-400 text-xs">
                 <li><a href="#" className="hover:text-white transition">About Us</a></li>
                 <li><a href="#" className="hover:text-white transition">Investments</a></li>
-                <li><a href="#" className="hover:text-white transition">Team Core</a></li>
                 <li><a href="#" className="hover:text-white transition">Cognisys Core</a></li>
               </ul>
             </div>
             
-            {/* Column 2 */}
             <div>
               <h3 className="font-bold text-xs uppercase tracking-widest text-[#f5deb3] mb-4">For Restaurants</h3>
               <ul className="space-y-3 text-stone-400 text-xs">
                 <li><a href="#" className="hover:text-white transition">Partner Integration</a></li>
-                <li><a href="#" className="hover:text-white transition">Merchant Guidelines</a></li>
-                <li><a href="#" className="hover:text-white transition">Operations App</a></li>
+                <li><a href="#" className="hover:text-white transition">Merchant App</a></li>
               </ul>
             </div>
 
-            {/* Column 3 */}
             <div>
               <h3 className="font-bold text-xs uppercase tracking-widest text-[#f5deb3] mb-4">For Drivers</h3>
               <ul className="space-y-3 text-stone-400 text-xs">
@@ -321,27 +327,20 @@ const LandingPage = ({ setView }) => {
               </ul>
             </div>
 
-            {/* Column 4 */}
             <div>
               <h3 className="font-bold text-xs uppercase tracking-widest text-[#f5deb3] mb-4">Legal Ledger</h3>
               <ul className="space-y-3 text-stone-400 text-xs">
                 <li><button onClick={() => setView('privacy')} className="hover:text-white transition text-left">Privacy Policy</button></li>
-                <li><a href="#" className="hover:text-white transition">Security Terms</a></li>
                 <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
               </ul>
             </div>
 
-            {/* Column 5 */}
             <div>
-              <h3 className="font-bold text-xs uppercase tracking-widest text-[#f5deb3] mb-4">Social Ecosystem</h3>
+              <h3 className="font-bold text-xs uppercase tracking-widest text-[#f5deb3] mb-4">Social</h3>
               <div className="flex gap-3 mb-6">
                 <div className="w-7 h-7 bg-stone-800 rounded-lg flex items-center justify-center text-xs text-stone-300 font-bold hover:bg-white hover:text-black transition cursor-pointer">in</div>
                 <div className="w-7 h-7 bg-stone-800 rounded-lg flex items-center justify-center text-xs text-stone-300 font-bold hover:bg-white hover:text-black transition cursor-pointer">ig</div>
                 <div className="w-7 h-7 bg-stone-800 rounded-lg flex items-center justify-center text-xs text-stone-300 font-bold hover:bg-white hover:text-black transition cursor-pointer">x</div>
-              </div>
-              <div className="space-y-2 text-xs">
-                <div className="bg-stone-900 border border-stone-800 text-stone-300 rounded-lg py-2 px-3 text-center font-bold select-none cursor-not-allowed">App Store App</div>
-                <div className="bg-stone-900 border border-stone-800 text-stone-300 rounded-lg py-2 px-3 text-center font-bold select-none cursor-not-allowed">Google Play App</div>
               </div>
             </div>
           </div>
@@ -353,7 +352,6 @@ const LandingPage = ({ setView }) => {
             <p className="whitespace-nowrap">© 2008-2026 Bitee™ Ltd.</p>
           </div>
           
-          {/* Small Protected Entry Link for Admin Dashboard Access */}
           <div className="flex justify-end mt-8 pt-4 border-t border-stone-900/40">
              <button 
                onClick={() => setView('admin')} 
