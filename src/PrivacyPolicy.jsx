@@ -1,52 +1,57 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const PrivacyPolicy = () => {
+const PrivacyPolicy = ({ setView }) => {
   return (
-    <div className="min-h-screen bg-[#faf8f5] font-sans text-stone-800 py-20 px-4">
+    <div className="min-h-screen bg-white font-sans text-[#3e2723]">
+      
+      {/* Simple Header */}
+      <nav className="border-b border-stone-200 px-8 py-6 flex justify-between items-center bg-[#faf8f5]">
+        <h1 className="text-3xl font-black tracking-tight lowercase">bitee</h1>
+        <button onClick={() => setView('home')} className="text-[#8b5a2b] font-bold hover:text-[#3e2723] transition flex items-center gap-2">
+          &larr; Back to Home
+        </button>
+      </nav>
+
       <motion.div 
-        className="max-w-4xl mx-auto bg-white p-10 md:p-16 rounded-3xl shadow-sm border border-stone-200"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        className="max-w-4xl mx-auto px-6 py-16"
       >
-        <a href="/" className="text-[#8b5a2b] font-bold text-sm mb-8 inline-block hover:text-[#3e2723] transition">&larr; Back to Home</a>
-        
-        <h1 className="text-4xl font-black text-[#3e2723] mb-4">Privacy Policy</h1>
-        <p className="text-stone-500 mb-12 border-b border-stone-100 pb-8">Last updated: June 14, 2026</p>
+        <h1 className="text-4xl md:text-5xl font-black mb-4">Privacy Policy</h1>
+        <p className="text-[#8b5a2b] font-bold tracking-widest uppercase text-sm mb-12">Last Updated: June 15, 2026</p>
 
-        <div className="space-y-10 text-stone-600 leading-relaxed">
+        <div className="space-y-8 text-lg leading-relaxed text-stone-700">
           <section>
             <h2 className="text-2xl font-bold text-[#3e2723] mb-4">1. Introduction</h2>
-            <p>
-              Welcome to the Bitee ecosystem. This Privacy Policy outlines how your personal data is collected, used, and protected when you use our mobile application and web services. Bitee is developed and operated by Cognisys IT Solutions. By using our platform, you agree to the collection and use of information in accordance with this policy.
-            </p>
+            <p>At Bitee, we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website or use our application and tell you about your privacy rights and how the law protects you.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-[#3e2723] mb-4">2. Information We Collect</h2>
-            <ul className="list-disc pl-5 space-y-2">
-              <li><strong>Personal Data:</strong> Email address, first name and last name, phone number, and physical address for delivery logistics.</li>
-              <li><strong>Usage Data:</strong> We automatically collect data regarding how the service is accessed, including IP addresses, browser types, and interaction metrics to improve your ordering experience.</li>
-              <li><strong>Location Data:</strong> To facilitate seamless food tracking and restaurant discovery, we utilize GPS data while the app is actively running.</li>
+            <h2 className="text-2xl font-bold text-[#3e2723] mb-4">2. The Data We Collect</h2>
+            <p>We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:</p>
+            <ul className="list-disc pl-6 mt-4 space-y-2 marker:text-[#8b5a2b]">
+              <li><strong>Identity Data:</strong> includes first name, last name, username or similar identifier.</li>
+              <li><strong>Contact Data:</strong> includes delivery address, email address and telephone numbers.</li>
+              <li><strong>Transaction Data:</strong> includes details about payments to and from you and other details of products you have purchased from us.</li>
+              <li><strong>Technical Data:</strong> includes internet protocol (IP) address, your login data, browser type and version.</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-[#3e2723] mb-4">3. How We Use Your Data</h2>
-            <p>Cognisys IT Solutions utilizes the collected data for various purposes within the Bitee ecosystem:</p>
-            <ul className="list-disc pl-5 space-y-2 mt-2">
-              <li>To provide and maintain the delivery tracking service.</li>
-              <li>To notify you about changes to our corporate supply offerings or consumer app updates.</li>
-              <li>To provide customer support and process Bitee Premium subscription payments.</li>
-            </ul>
+            <p>We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances: Where we need to perform the contract we are about to enter into or have entered into with you (e.g., delivering your food order). Where it is necessary for our legitimate interests and your interests and fundamental rights do not override those interests.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-[#3e2723] mb-4">4. Data Security</h2>
-            <p>
-              The security of your data is important to us. We utilize industry-standard encryption protocols to protect your payment information and order history. However, remember that no method of transmission over the Internet is 100% secure.
-            </p>
+            <p>We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way, altered, or disclosed. In addition, we limit access to your personal data to those employees, agents, contractors, and other third parties who have a business need to know.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-[#3e2723] mb-4">5. Contact Details</h2>
+            <p>If you have any questions about this privacy policy or our privacy practices, please contact us at:</p>
+            <p className="font-bold text-[#8b5a2b] mt-2">Email: support@bitee.in</p>
           </section>
         </div>
       </motion.div>
