@@ -13,7 +13,7 @@ const LandingPage = ({ setView }) => {
   // Slideshow 2 State: Driver Delivery Slideshow
   const [deliveryIndex, setDeliveryIndex] = useState(0);
   const deliverySlides = [
-    { title: "The Bitee Uniform", desc: "Our transit specialists gear up in custom deep-brown t-shirts proudly bearing the minimalist 'C' Bitee insignia." },
+    { title: "The Bitee Uniform", desc: "Our transit specialists gear up in custom deep-brown t-shirts proudly bearing the Bitee insignia." },
     { title: "Optimized Transit", desc: "Navigating urban routes with insulated thermal backpacks to guarantee your orders maintain baseline temperature." },
     { title: "Safe Arrival", desc: "A smiling delivery specialist hands over the sealed meal box directly to the customer's doorstep." }
   ];
@@ -33,9 +33,9 @@ const LandingPage = ({ setView }) => {
       {/* 1. NAVIGATION BAR */}
       <nav className="flex justify-between items-center px-6 md:px-12 py-6 bg-white/90 border-b border-stone-200/60 sticky top-0 z-50 shadow-sm backdrop-blur-md">
         <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="Bitee Logo" className="w-8 h-8 object-contain" />
+          <img src="/logo.png" alt="Bitee Logo" className="w-10 h-10 object-contain" />
           <h1 className="text-3xl font-black tracking-tight lowercase text-[#3e2723] mt-1">bitee</h1>
-          <span className="text-[10px] bg-[#8b5a2b]/10 text-[#8b5a2b] px-2 py-0.5 rounded-full font-bold tracking-wider uppercase ml-2">Ecosystem</span>
+          <span className="text-[10px] bg-[#8b5a2b]/10 text-[#8b5a2b] px-2 py-0.5 rounded-full font-bold tracking-wider uppercase ml-2 hidden sm:inline-block">Ecosystem</span>
         </div>
         <button 
           onClick={() => window.location.href = "mailto:support@bitee.in"}
@@ -45,68 +45,71 @@ const LandingPage = ({ setView }) => {
         </button>
       </nav>
 
-      {/* 2. HERO SECTION */}
-      <header className="flex flex-col items-center justify-center text-center px-4 py-24 md:py-32 max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="text-xs font-black uppercase tracking-widest text-[#8b5a2b] bg-[#8b5a2b]/5 px-4 py-2 rounded-full inline-block mb-6">
-            Hyper-Local Food Logistics Platform
-          </span>
-        </motion.div>
-        
-        <motion.h2 
-          initial={{ opacity: 0, y: 30 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-5xl md:text-7xl font-black mb-8 text-[#3e2723] leading-[1.1]"
-        >
-          Delicious food, <br/><span className="text-[#8b5a2b]">delivered instantly.</span>
-        </motion.h2>
+      {/* 2. HERO SECTION WITH CINEMATIC VIDEO BACKGROUND */}
+      <header className="relative flex flex-col items-center justify-center text-center px-4 py-32 md:py-48 max-w-full mx-auto min-h-[85vh] overflow-hidden">
+        {/* Full Visibility Background Video */}
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0">
+          <source src="/videos/food-pickup.mp4" type="video/mp4" />
+        </video>
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/60 z-0"></div>
 
-        <motion.p 
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-lg md:text-xl text-stone-600 max-w-2xl mb-12 font-medium leading-relaxed"
-        >
-          Experience complex logistical coordination simplified down to a single click. From local culinary crafters directly to your domain.
-        </motion.p>
+        <div className="relative z-10 max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="text-xs font-black uppercase tracking-widest text-[#f5deb3] bg-black/40 backdrop-blur-md px-4 py-2 rounded-full inline-block mb-6 border border-white/20">
+              Hyper-Local Food Logistics Platform
+            </span>
+          </motion.div>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-5xl md:text-7xl font-black mb-8 text-white leading-[1.1]"
+          >
+            Delicious food, <br/><span className="text-[#f5deb3]">delivered instantly.</span>
+          </motion.h2>
 
-        {/* Hero Quick Animations */}
-        <div className="flex flex-col sm:flex-row gap-6 w-full justify-center max-w-md">
-          <motion.div 
-            whileHover={{ scale: 1.02 }} className="bg-white p-4 rounded-2xl shadow-sm border border-stone-200/80 flex items-center gap-4 text-left"
+          <motion.p 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="text-lg md:text-xl text-stone-200 max-w-2xl mx-auto mb-12 font-medium leading-relaxed"
           >
-            <div className="p-3 bg-[#faf8f5] rounded-xl text-[#8b5a2b] font-black">⚡</div>
-            <div>
-              <p className="font-bold text-sm">Lightning Delivery</p>
-              <p className="text-xs text-stone-500">Intelligent transit routing</p>
-            </div>
-          </motion.div>
-          <motion.div 
-            whileHover={{ scale: 1.02 }} className="bg-white p-4 rounded-2xl shadow-sm border border-stone-200/80 flex items-center gap-4 text-left"
-          >
-            <div className="p-3 bg-[#faf8f5] rounded-xl text-[#8b5a2b] font-black">🍳</div>
-            <div>
-              <p className="font-bold text-sm">Fresh & Secure</p>
-              <p className="text-xs text-stone-500">Thermal-sealed handling</p>
-            </div>
-          </motion.div>
+            Experience complex logistical coordination simplified down to a single click. From local culinary crafters directly to your domain.
+          </motion.p>
+
+          {/* Hero Quick Animations (Updated for dark background) */}
+          <div className="flex flex-col sm:flex-row gap-6 w-full justify-center max-w-md mx-auto">
+            <motion.div 
+              whileHover={{ scale: 1.02 }} className="bg-black/40 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/20 flex items-center gap-4 text-left"
+            >
+              <div className="p-3 bg-[#f5deb3] rounded-xl text-[#3e2723] font-black">⚡</div>
+              <div>
+                <p className="font-bold text-sm text-white">Lightning Delivery</p>
+                <p className="text-xs text-stone-300">Intelligent transit routing</p>
+              </div>
+            </motion.div>
+            <motion.div 
+              whileHover={{ scale: 1.02 }} className="bg-black/40 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/20 flex items-center gap-4 text-left"
+            >
+              <div className="p-3 bg-[#f5deb3] rounded-xl text-[#3e2723] font-black">🍳</div>
+              <div>
+                <p className="font-bold text-sm text-white">Fresh & Secure</p>
+                <p className="text-xs text-stone-300">Thermal-sealed handling</p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </header>
 
-      {/* 3. SCROLL SLIDESHOW 1: HUMAN PICKING FOOD (WITH BACKGROUND VIDEO) */}
-      <section className="relative py-24 border-t border-stone-200/60 overflow-hidden">
-        {/* Background Video */}
-        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-30">
-          <source src="/videos/food-pickup.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-white/85 z-0 backdrop-blur-[2px]"></div>
-
-        <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      {/* 3. SCROLL SLIDESHOW 1: HUMAN PICKING FOOD (Clean Solid Background) */}
+      <section className="bg-white py-24 border-t border-stone-200/60">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -115,7 +118,7 @@ const LandingPage = ({ setView }) => {
           >
             <span className="text-xs font-bold text-[#8b5a2b] uppercase tracking-widest block mb-2">Phase One: Culinary Craft</span>
             <h3 className="text-3xl md:text-4xl font-black text-[#3e2723] mb-6">Sourced From Elegant Tables</h3>
-            <p className="text-stone-600 leading-relaxed mb-6">
+            <p className="text-stone-600 leading-relaxed mb-6 font-medium">
               The journey begins at the table. Our culinary partners focus entirely on the art of taste, curating recipes that stand out. When a meal is completed, it is staged perfectly for safe transfer—capturing baseline freshness before transit starts.
             </p>
             <div className="flex gap-2">
@@ -134,7 +137,7 @@ const LandingPage = ({ setView }) => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-[#faf8f5]/90 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-[#8b5a2b]/20 flex flex-col justify-between min-h-[320px] shadow-xl relative overflow-hidden"
+            className="bg-[#faf8f5] p-8 md:p-12 rounded-3xl border border-stone-200 flex flex-col justify-between min-h-[320px] shadow-sm relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 p-8 text-8xl font-black text-stone-200/40 select-none">01</div>
             <AnimatePresence mode="wait">
@@ -146,7 +149,7 @@ const LandingPage = ({ setView }) => {
                 transition={{ duration: 0.4 }}
                 className="space-y-4 relative z-10"
               >
-                <img src="/logo.png" alt="Bitee Logo" className="w-12 h-12 object-contain mb-2 drop-shadow-md" />
+                <img src="/logo.png" alt="Bitee Logo" className="w-12 h-12 object-contain mb-2" />
                 <h4 className="text-xl font-bold text-[#3e2723]">{pickupSlides[pickupIndex].title}</h4>
                 <p className="text-stone-600 text-sm leading-relaxed">{pickupSlides[pickupIndex].desc}</p>
               </motion.div>
@@ -156,24 +159,25 @@ const LandingPage = ({ setView }) => {
         </div>
       </section>
 
-      {/* 4. SCROLL SLIDESHOW 2: DRIVER DELIVERING (WITH BACKGROUND VIDEO) */}
+      {/* 4. SCROLL SLIDESHOW 2: DRIVER DELIVERING (WITH DARK CINEMATIC VIDEO BACKGROUND) */}
       <section className="relative py-24 border-t border-stone-200/60 overflow-hidden">
-        {/* Background Video */}
-        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-40">
+        {/* Full Visibility Background Video */}
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0">
           <source src="/videos/delivery.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-[#faf8f5]/95 z-0 backdrop-blur-[2px]"></div>
+        {/* Dark overlay so the video pops without washing out the text */}
+        <div className="absolute inset-0 bg-black/70 z-0"></div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center text-white">
           
-          {/* Interactive Slideshow Box First on Desktop */}
+          {/* Interactive Slideshow Box First on Desktop (Glassmorphic dark design) */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-white/90 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-[#8b5a2b]/20 flex flex-col justify-between min-h-[320px] shadow-xl relative overflow-hidden order-last md:order-first"
+            className="bg-black/40 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-stone-700 flex flex-col justify-between min-h-[320px] shadow-2xl relative overflow-hidden order-last md:order-first"
           >
-            <div className="absolute top-0 right-0 p-8 text-8xl font-black text-stone-200/40 select-none">02</div>
+            <div className="absolute top-0 right-0 p-8 text-8xl font-black text-white/10 select-none">02</div>
             <AnimatePresence mode="wait">
               <motion.div
                 key={deliveryIndex}
@@ -183,12 +187,12 @@ const LandingPage = ({ setView }) => {
                 transition={{ duration: 0.4 }}
                 className="space-y-4 relative z-10"
               >
-                <img src="/logo.png" alt="Bitee Logo" className="w-12 h-12 object-contain mb-2 drop-shadow-md" />
-                <h4 className="text-xl font-bold text-[#3e2723]">{deliverySlides[deliveryIndex].title}</h4>
-                <p className="text-stone-600 text-sm leading-relaxed">{deliverySlides[deliveryIndex].desc}</p>
+                <img src="/logo.png" alt="Bitee Logo" className="w-12 h-12 object-contain mb-2 drop-shadow-md brightness-110" />
+                <h4 className="text-xl font-bold text-white">{deliverySlides[deliveryIndex].title}</h4>
+                <p className="text-stone-300 text-sm leading-relaxed">{deliverySlides[deliveryIndex].desc}</p>
               </motion.div>
             </AnimatePresence>
-            <div className="text-xs font-bold text-[#8b5a2b] mt-6">Transit Fleet Interface Update</div>
+            <div className="text-xs font-bold text-[#f5deb3] mt-6">Transit Fleet Interface Update</div>
           </motion.div>
 
           <motion.div 
@@ -197,9 +201,9 @@ const LandingPage = ({ setView }) => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-xs font-bold text-[#8b5a2b] uppercase tracking-widest block mb-2">Phase Two: Secure Logistics</span>
-            <h3 className="text-3xl md:text-4xl font-black text-[#3e2723] mb-6">The Bitee Fleet Identity</h3>
-            <p className="text-stone-600 leading-relaxed mb-6">
+            <span className="text-xs font-bold text-[#f5deb3] uppercase tracking-widest block mb-2">Phase Two: Secure Logistics</span>
+            <h3 className="text-3xl md:text-4xl font-black mb-6">The Bitee Fleet Identity</h3>
+            <p className="text-stone-300 leading-relaxed mb-6 font-medium">
               Our transit architecture relies on real-world clarity. Every single delivery partner operates under a standardized fleet identity, wearing our signature deep-brown t-shirt featuring the custom Bitee emblem. This guarantees security, instant recognition at commercial checkpoints, and accountability.
             </p>
             <div className="flex gap-2">
@@ -207,7 +211,7 @@ const LandingPage = ({ setView }) => {
                 <button 
                   key={idx} 
                   onClick={() => setDeliveryIndex(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 ${idx === deliveryIndex ? 'w-8 bg-[#8b5a2b]' : 'w-2 bg-stone-300'}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${idx === deliveryIndex ? 'w-8 bg-[#f5deb3]' : 'w-2 bg-stone-500'}`}
                 />
               ))}
             </div>
@@ -250,7 +254,7 @@ const LandingPage = ({ setView }) => {
             {/* Pillar 1 */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              className="bg-[#271816] p-8 rounded-2xl border border-stone-800 flex flex-col justify-between"
+              className="bg-[#271816] p-8 rounded-2xl border border-stone-800 flex flex-col justify-between hover:border-[#8b5a2b] transition"
             >
               <div>
                 <span className="text-3xl">📱</span>
@@ -265,7 +269,7 @@ const LandingPage = ({ setView }) => {
             {/* Pillar 2 */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-              className="bg-[#271816] p-8 rounded-2xl border border-stone-800 flex flex-col justify-between"
+              className="bg-[#271816] p-8 rounded-2xl border border-stone-800 flex flex-col justify-between hover:border-[#8b5a2b] transition"
             >
               <div>
                 <span className="text-3xl">🏪</span>
@@ -280,7 +284,7 @@ const LandingPage = ({ setView }) => {
             {/* Pillar 3 */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-              className="bg-[#271816] p-8 rounded-2xl border border-stone-800 flex flex-col justify-between"
+              className="bg-[#271816] p-8 rounded-2xl border border-stone-800 flex flex-col justify-between hover:border-[#8b5a2b] transition"
             >
               <div>
                 <span className="text-3xl">💼</span>
