@@ -33,7 +33,7 @@ const LandingPage = ({ setView }) => {
       {/* 1. NAVIGATION BAR */}
       <nav className="flex justify-between items-center w-full px-6 md:px-12 py-6 bg-white/90 border-b border-stone-200/60 sticky top-0 z-50 shadow-sm backdrop-blur-md">
         <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="Bitee Logo" className="w-10 h-10 object-contain" />
+          <img src="/logo.png" alt="Bitee Logo" width="40" height="40" className="w-10 h-10 object-contain" />
           <h1 className="text-3xl font-black tracking-tight lowercase text-[#3e2723] mt-1">bitee</h1>
           <span className="text-[10px] bg-[#8b5a2b]/10 text-[#8b5a2b] px-2 py-0.5 rounded-full font-bold tracking-wider uppercase ml-2 hidden sm:inline-block">Ecosystem</span>
         </div>
@@ -149,7 +149,7 @@ const LandingPage = ({ setView }) => {
                 transition={{ duration: 0.4 }}
                 className="space-y-4 relative z-10"
               >
-                <img src="/logo.png" alt="Bitee Logo" className="w-12 h-12 object-contain mb-2" />
+                <img src="/logo.png" alt="Bitee Logo" width="48" height="48" className="w-12 h-12 object-contain mb-2" />
                 <h4 className="text-xl font-bold text-[#3e2723]">{pickupSlides[pickupIndex].title}</h4>
                 <p className="text-stone-600 text-sm leading-relaxed">{pickupSlides[pickupIndex].desc}</p>
               </motion.div>
@@ -187,7 +187,7 @@ const LandingPage = ({ setView }) => {
                 transition={{ duration: 0.4 }}
                 className="space-y-4 relative z-10"
               >
-                <img src="/logo.png" alt="Bitee Logo" className="w-12 h-12 object-contain mb-2 drop-shadow-md brightness-110" />
+                <img src="/logo.png" alt="Bitee Logo" width="48" height="48" className="w-12 h-12 object-contain mb-2 drop-shadow-md brightness-110" />
                 <h4 className="text-xl font-bold text-white">{deliverySlides[deliveryIndex].title}</h4>
                 <p className="text-stone-300 text-sm leading-relaxed">{deliverySlides[deliveryIndex].desc}</p>
               </motion.div>
@@ -299,7 +299,7 @@ const LandingPage = ({ setView }) => {
         </div>
       </section>
 
-      {/* 7. APP DOWNLOADS (ZOMATO STYLE WITH OFFICIAL ICONS) */}
+      {/* 7. APP DOWNLOADS */}
       <section className="bg-white w-full py-20 border-t border-stone-200">
         <div className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12 w-full">
           <div className="flex-1 text-center md:text-left">
@@ -309,7 +309,7 @@ const LandingPage = ({ setView }) => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               {/* Apple Store SVG Button */}
               <a href="#" className="bg-black text-white flex items-center justify-center gap-3 px-6 py-3 rounded-xl hover:bg-stone-800 transition shadow-md">
-                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.44-3.05 2.44-1.35 0-1.78-.81-3.32-.81-1.54 0-2.02.81-3.32.81-1.34 0-2.31-1.3-3.41-2.98-1.85-2.82-3.23-7.98-1.37-11.39 1.15-2.09 3.23-3.41 5.48-3.41 1.35 0 2.64.92 3.51.92.87 0 2.37-1.12 4.04-1.12.69 0 2.62.07 3.86 1.86-.06.03-2.18 1.28-2.18 3.84 0 3.23 2.87 4.38 3.01 4.43-.03.09-.45 1.57-1.48 3.08zM14.54 4.54c.71-.85 1.19-2.03 1.06-3.22-1.02.04-2.26.68-2.99 1.54-.66.75-1.19 1.94-1.04 3.12 1.15.09 2.26-.59 2.97-1.44z"/></svg>
+                <svg width="32" height="32" className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.44-3.05 2.44-1.35 0-1.78-.81-3.32-.81-1.54 0-2.02.81-3.32.81-1.34 0-2.31-1.3-3.41-2.98-1.85-2.82-3.23-7.98-1.37-11.39 1.15-2.09 3.23-3.41 5.48-3.41 1.35 0 2.64.92 3.51.92.87 0 2.37-1.12 4.04-1.12.69 0 2.62.07 3.86 1.86-.06.03-2.18 1.28-2.18 3.84 0 3.23 2.87 4.38 3.01 4.43-.03.09-.45 1.57-1.48 3.08zM14.54 4.54c.71-.85 1.19-2.03 1.06-3.22-1.02.04-2.26.68-2.99 1.54-.66.75-1.19 1.94-1.04 3.12 1.15.09 2.26-.59 2.97-1.44z"/></svg>
                 <div className="text-left">
                   <div className="text-[10px] uppercase tracking-wider text-stone-300">Download on the</div>
                   <div className="font-bold text-lg leading-tight">App Store</div>
@@ -317,7 +317,7 @@ const LandingPage = ({ setView }) => {
               </a>
               {/* Google Play SVG Button */}
               <a href="#" className="bg-black text-white flex items-center justify-center gap-3 px-6 py-3 rounded-xl hover:bg-stone-800 transition shadow-md">
-                <svg className="w-8 h-8" viewBox="0 0 512 512"><path fill="#34A853" d="M325.3 234.3L104.6 13l278.3 278.3-278.3 278.3L325.3 234.3z"/><path fill="#4285F4" d="M104.6 13L325.3 234.3 434.7 124.9 104.6 13z"/><path fill="#FBBC05" d="M434.7 387.1L325.3 277.7 104.6 499 434.7 387.1z"/><path fill="#EA4335" d="M104.6 499L325.3 277.7 434.7 387.1 104.6 499z"/></svg>
+                <svg width="32" height="32" className="w-8 h-8" viewBox="0 0 512 512"><path fill="#34A853" d="M325.3 234.3L104.6 13l278.3 278.3-278.3 278.3L325.3 234.3z"/><path fill="#4285F4" d="M104.6 13L325.3 234.3 434.7 124.9 104.6 13z"/><path fill="#FBBC05" d="M434.7 387.1L325.3 277.7 104.6 499 434.7 387.1z"/><path fill="#EA4335" d="M104.6 499L325.3 277.7 434.7 387.1 104.6 499z"/></svg>
                 <div className="text-left">
                   <div className="text-[10px] uppercase tracking-wider text-stone-300">Get it on</div>
                   <div className="font-bold text-lg leading-tight">Google Play</div>
@@ -339,7 +339,7 @@ const LandingPage = ({ setView }) => {
         <div className="max-w-6xl mx-auto w-full">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6 w-full">
             <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="Bitee Logo" className="w-8 h-8 object-contain" />
+              <img src="/logo.png" alt="Bitee Logo" width="32" height="32" className="w-8 h-8 object-contain" />
               <h2 className="text-4xl font-black tracking-tight lowercase">bitee</h2>
             </div>
             <div className="text-xs text-stone-500 font-mono">Build Verification Version: 2.1.0-MVP</div>
