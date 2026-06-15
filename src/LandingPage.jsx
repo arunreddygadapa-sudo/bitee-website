@@ -28,10 +28,10 @@ const LandingPage = ({ setView }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#faf8f5] font-sans text-[#3e2723] flex flex-col overflow-x-hidden selection:bg-[#8b5a2b] selection:text-white">
+    <div className="min-h-screen w-full bg-[#faf8f5] font-sans text-[#3e2723] flex flex-col overflow-x-hidden selection:bg-[#8b5a2b] selection:text-white">
       
       {/* 1. NAVIGATION BAR */}
-      <nav className="flex justify-between items-center px-6 md:px-12 py-6 bg-white/90 border-b border-stone-200/60 sticky top-0 z-50 shadow-sm backdrop-blur-md">
+      <nav className="flex justify-between items-center w-full px-6 md:px-12 py-6 bg-white/90 border-b border-stone-200/60 sticky top-0 z-50 shadow-sm backdrop-blur-md">
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="Bitee Logo" className="w-10 h-10 object-contain" />
           <h1 className="text-3xl font-black tracking-tight lowercase text-[#3e2723] mt-1">bitee</h1>
@@ -46,15 +46,15 @@ const LandingPage = ({ setView }) => {
       </nav>
 
       {/* 2. HERO SECTION WITH CINEMATIC VIDEO BACKGROUND */}
-      <header className="relative flex flex-col items-center justify-center text-center px-4 py-32 md:py-48 max-w-full mx-auto min-h-[85vh] overflow-hidden">
+      <header className="relative w-full flex flex-col items-center justify-center text-center px-4 py-32 md:py-48 min-h-[85vh] overflow-hidden">
         {/* Full Visibility Background Video */}
         <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0">
           <source src="/videos/food-pickup.mp4" type="video/mp4" />
         </video>
         {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/60 z-0"></div>
+        <div className="absolute inset-0 bg-black/60 z-0 w-full"></div>
 
-        <div className="relative z-10 max-w-5xl mx-auto">
+        <div className="relative z-10 w-full max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ const LandingPage = ({ setView }) => {
           {/* Hero Quick Animations (Updated for dark background) */}
           <div className="flex flex-col sm:flex-row gap-6 w-full justify-center max-w-md mx-auto">
             <motion.div 
-              whileHover={{ scale: 1.02 }} className="bg-black/40 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/20 flex items-center gap-4 text-left"
+              whileHover={{ scale: 1.02 }} className="bg-black/40 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/20 flex items-center gap-4 text-left w-full"
             >
               <div className="p-3 bg-[#f5deb3] rounded-xl text-[#3e2723] font-black">⚡</div>
               <div>
@@ -95,7 +95,7 @@ const LandingPage = ({ setView }) => {
               </div>
             </motion.div>
             <motion.div 
-              whileHover={{ scale: 1.02 }} className="bg-black/40 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/20 flex items-center gap-4 text-left"
+              whileHover={{ scale: 1.02 }} className="bg-black/40 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/20 flex items-center gap-4 text-left w-full"
             >
               <div className="p-3 bg-[#f5deb3] rounded-xl text-[#3e2723] font-black">🍳</div>
               <div>
@@ -108,8 +108,8 @@ const LandingPage = ({ setView }) => {
       </header>
 
       {/* 3. SCROLL SLIDESHOW 1: HUMAN PICKING FOOD (Clean Solid Background) */}
-      <section className="bg-white py-24 border-t border-stone-200/60">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <section className="bg-white w-full py-24 border-t border-stone-200/60">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
           <motion.div 
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -137,7 +137,7 @@ const LandingPage = ({ setView }) => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-[#faf8f5] p-8 md:p-12 rounded-3xl border border-stone-200 flex flex-col justify-between min-h-[320px] shadow-sm relative overflow-hidden"
+            className="bg-[#faf8f5] p-8 md:p-12 rounded-3xl border border-stone-200 flex flex-col justify-between min-h-[320px] shadow-sm relative overflow-hidden w-full"
           >
             <div className="absolute top-0 right-0 p-8 text-8xl font-black text-stone-200/40 select-none">01</div>
             <AnimatePresence mode="wait">
@@ -160,22 +160,22 @@ const LandingPage = ({ setView }) => {
       </section>
 
       {/* 4. SCROLL SLIDESHOW 2: DRIVER DELIVERING (WITH DARK CINEMATIC VIDEO BACKGROUND) */}
-      <section className="relative py-24 border-t border-stone-200/60 overflow-hidden">
+      <section className="relative w-full py-24 border-t border-stone-200/60 overflow-hidden">
         {/* Full Visibility Background Video */}
         <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0">
           <source src="/videos/delivery.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay so the video pops without washing out the text */}
-        <div className="absolute inset-0 bg-black/70 z-0"></div>
+        <div className="absolute inset-0 bg-black/70 z-0 w-full"></div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center text-white">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center text-white w-full">
           
           {/* Interactive Slideshow Box First on Desktop (Glassmorphic dark design) */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-black/40 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-stone-700 flex flex-col justify-between min-h-[320px] shadow-2xl relative overflow-hidden order-last md:order-first"
+            className="bg-black/40 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-stone-700 flex flex-col justify-between min-h-[320px] shadow-2xl relative overflow-hidden order-last md:order-first w-full"
           >
             <div className="absolute top-0 right-0 p-8 text-8xl font-black text-white/10 select-none">02</div>
             <AnimatePresence mode="wait">
@@ -220,8 +220,8 @@ const LandingPage = ({ setView }) => {
       </section>
 
       {/* 5. COGNISYS CORPORATION STORY SECTION */}
-      <section className="bg-white py-24 border-t border-stone-200/60">
-        <div className="max-w-4xl mx-auto text-center px-6">
+      <section className="bg-white w-full py-24 border-t border-stone-200/60">
+        <div className="max-w-4xl mx-auto text-center px-6 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -242,15 +242,15 @@ const LandingPage = ({ setView }) => {
       </section>
 
       {/* 6. ECOSYSTEM ARCHITECTURE & APP FUNCTIONALITY */}
-      <section className="bg-[#1a100c] text-white py-24 border-t border-stone-900">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="bg-[#1a100c] text-white w-full py-24 border-t border-stone-900">
+        <div className="max-w-6xl mx-auto px-6 w-full">
           <div className="text-center mb-16">
             <span className="text-xs font-bold uppercase tracking-widest text-[#f5deb3]">System Topology</span>
             <h3 className="text-3xl md:text-4xl font-black mt-2">How the Bitee Ecosystem Connects</h3>
             <p className="text-stone-400 text-sm mt-4 max-w-xl mx-auto">Three decoupled applications communicating with a singular cloud relational database repository.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
             {/* Pillar 1 */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
@@ -300,8 +300,8 @@ const LandingPage = ({ setView }) => {
       </section>
 
       {/* 7. APP DOWNLOADS (ZOMATO STYLE WITH OFFICIAL ICONS) */}
-      <section className="bg-white py-20 border-t border-stone-200">
-        <div className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
+      <section className="bg-white w-full py-20 border-t border-stone-200">
+        <div className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12 w-full">
           <div className="flex-1 text-center md:text-left">
             <h3 className="text-4xl font-black text-[#3e2723] mb-4">Download the app now!</h3>
             <p className="text-stone-600 text-lg mb-8 font-medium">Experience seamless online ordering and live tracking only on the Bitee app.</p>
@@ -335,9 +335,9 @@ const LandingPage = ({ setView }) => {
       </section>
 
       {/* 8. DETAILED ZOMATO-INSPIRED FOOTER STRUCTURE */}
-      <footer className="bg-[#110a08] text-white pt-16 pb-8 px-6 md:px-16 border-t border-stone-900">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
+      <footer className="bg-[#110a08] text-white w-full pt-16 pb-8 px-6 md:px-16 border-t border-stone-900">
+        <div className="max-w-6xl mx-auto w-full">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6 w-full">
             <div className="flex items-center gap-3">
               <img src="/logo.png" alt="Bitee Logo" className="w-8 h-8 object-contain" />
               <h2 className="text-4xl font-black tracking-tight lowercase">bitee</h2>
@@ -345,7 +345,7 @@ const LandingPage = ({ setView }) => {
             <div className="text-xs text-stone-500 font-mono">Build Verification Version: 2.1.0-MVP</div>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-16 w-full">
             {/* Column 1 */}
             <div>
               <h3 className="font-bold text-xs uppercase tracking-widest text-[#f5deb3] mb-4">Corporate</h3>
@@ -401,7 +401,7 @@ const LandingPage = ({ setView }) => {
             </div>
           </div>
 
-          <div className="border-t border-stone-900 pt-8 flex flex-col md:flex-row justify-between items-center text-[11px] text-stone-600 gap-4">
+          <div className="border-t border-stone-900 pt-8 flex flex-col md:flex-row justify-between items-center text-[11px] text-stone-600 gap-4 w-full">
             <p className="text-center md:text-left">
               By continuous interaction with this interface, you confirm compliance with system data routing protocols. All code assets are properties of their respective architectural entities.
             </p>
@@ -409,7 +409,7 @@ const LandingPage = ({ setView }) => {
           </div>
           
           {/* Small Protected Entry Link for Admin Dashboard Access */}
-          <div className="flex justify-end mt-8 pt-4 border-t border-stone-900/40">
+          <div className="flex justify-end mt-8 pt-4 border-t border-stone-900/40 w-full">
              <button 
                onClick={() => setView('admin')} 
                className="text-[10px] text-stone-700 hover:text-[#8b5a2b] transition tracking-widest uppercase font-black bg-stone-950 px-3 py-1.5 rounded-md border border-stone-900"
