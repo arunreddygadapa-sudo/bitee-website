@@ -27,6 +27,12 @@ const LandingPage = ({ setView }) => {
     return () => clearInterval(timer);
   }, []);
 
+  // ROUTING FUNCTION: Smooth scrolls to top and opens the correct view when a footer link is clicked
+  const handleNavigate = (pageName) => {
+    setView(pageName);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen w-full bg-[#faf8f5] font-sans text-[#3e2723] flex flex-col overflow-x-hidden selection:bg-[#8b5a2b] selection:text-white">
       
@@ -83,7 +89,7 @@ const LandingPage = ({ setView }) => {
             Experience complex logistical coordination simplified down to a single click. From local culinary crafters directly to your domain.
           </motion.p>
 
-          {/* Hero Quick Animations (Updated for dark background) */}
+          {/* Hero Quick Animations */}
           <div className="flex flex-col sm:flex-row gap-6 w-full justify-center max-w-md mx-auto">
             <motion.div 
               whileHover={{ scale: 1.02 }} className="bg-black/40 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/20 flex items-center gap-4 text-left w-full"
@@ -170,7 +176,7 @@ const LandingPage = ({ setView }) => {
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center text-white w-full">
           
-          {/* Interactive Slideshow Box First on Desktop (Glassmorphic dark design) */}
+          {/* Interactive Slideshow Box First on Desktop */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -334,7 +340,7 @@ const LandingPage = ({ setView }) => {
         </div>
       </section>
 
-      {/* 8. DETAILED ZOMATO-INSPIRED FOOTER STRUCTURE */}
+      {/* 8. DETAILED ZOMATO-INSPIRED FOOTER STRUCTURE (Fully Clickable) */}
       <footer className="bg-[#110a08] text-white w-full pt-16 pb-8 px-6 md:px-16 border-t border-stone-900">
         <div className="max-w-6xl mx-auto w-full">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6 w-full">
@@ -350,10 +356,10 @@ const LandingPage = ({ setView }) => {
             <div>
               <h3 className="font-bold text-xs uppercase tracking-widest text-[#f5deb3] mb-4">Corporate</h3>
               <ul className="space-y-3 text-stone-400 text-xs">
-                <li><a href="#" className="hover:text-white transition">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition">Investments</a></li>
-                <li><a href="#" className="hover:text-white transition">Team Core</a></li>
-                <li><a href="#" className="hover:text-white transition">Cognisys Core</a></li>
+                <li><button onClick={() => handleNavigate('about-us')} className="hover:text-white transition text-left">About Us</button></li>
+                <li><button onClick={() => handleNavigate('investments')} className="hover:text-white transition text-left">Investments</button></li>
+                <li><button onClick={() => handleNavigate('team-core')} className="hover:text-white transition text-left">Team Core</button></li>
+                <li><button onClick={() => handleNavigate('cognisys-core')} className="hover:text-white transition text-left">Cognisys Core</button></li>
               </ul>
             </div>
             
@@ -361,9 +367,9 @@ const LandingPage = ({ setView }) => {
             <div>
               <h3 className="font-bold text-xs uppercase tracking-widest text-[#f5deb3] mb-4">For Restaurants</h3>
               <ul className="space-y-3 text-stone-400 text-xs">
-                <li><a href="#" className="hover:text-white transition">Partner Integration</a></li>
-                <li><a href="#" className="hover:text-white transition">Merchant Guidelines</a></li>
-                <li><a href="#" className="hover:text-white transition">Operations App</a></li>
+                <li><button onClick={() => handleNavigate('partner-integration')} className="hover:text-white transition text-left">Partner Integration</button></li>
+                <li><button onClick={() => handleNavigate('merchant-guidelines')} className="hover:text-white transition text-left">Merchant Guidelines</button></li>
+                <li><button onClick={() => handleNavigate('operations-app')} className="hover:text-white transition text-left">Operations App</button></li>
               </ul>
             </div>
 
@@ -371,8 +377,8 @@ const LandingPage = ({ setView }) => {
             <div>
               <h3 className="font-bold text-xs uppercase tracking-widest text-[#f5deb3] mb-4">For Drivers</h3>
               <ul className="space-y-3 text-stone-400 text-xs">
-                <li><a href="#" className="hover:text-white transition">Fleet Registration</a></li>
-                <li><a href="#" className="hover:text-white transition">Transit Protocols</a></li>
+                <li><button onClick={() => handleNavigate('fleet-registration')} className="hover:text-white transition text-left">Fleet Registration</button></li>
+                <li><button onClick={() => handleNavigate('transit-protocols')} className="hover:text-white transition text-left">Transit Protocols</button></li>
               </ul>
             </div>
 
@@ -380,9 +386,10 @@ const LandingPage = ({ setView }) => {
             <div>
               <h3 className="font-bold text-xs uppercase tracking-widest text-[#f5deb3] mb-4">Legal Ledger</h3>
               <ul className="space-y-3 text-stone-400 text-xs">
-                <li><button onClick={() => setView('privacy')} className="hover:text-white transition text-left">Privacy Policy</button></li>
-                <li><a href="#" className="hover:text-white transition">Security Terms</a></li>
-                <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
+                {/* Specifically wires up Privacy Policy as requested */}
+                <li><button onClick={() => handleNavigate('privacy-policy')} className="hover:text-white transition text-left">Privacy Policy</button></li>
+                <li><button onClick={() => handleNavigate('security-terms')} className="hover:text-white transition text-left">Security Terms</button></li>
+                <li><button onClick={() => handleNavigate('terms-of-service')} className="hover:text-white transition text-left">Terms of Service</button></li>
               </ul>
             </div>
 
@@ -411,7 +418,7 @@ const LandingPage = ({ setView }) => {
           {/* Small Protected Entry Link for Admin Dashboard Access */}
           <div className="flex justify-end mt-8 pt-4 border-t border-stone-900/40 w-full">
              <button 
-               onClick={() => setView('admin')} 
+               onClick={() => handleNavigate('admin')} 
                className="text-[10px] text-stone-700 hover:text-[#8b5a2b] transition tracking-widest uppercase font-black bg-stone-950 px-3 py-1.5 rounded-md border border-stone-900"
              >
                Internal Admin Portal Login
