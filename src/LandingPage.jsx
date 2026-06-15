@@ -36,19 +36,26 @@ const LandingPage = ({ setView }) => {
   return (
     <div className="min-h-screen w-full bg-[#faf8f5] font-sans text-[#3e2723] flex flex-col overflow-x-hidden selection:bg-[#8b5a2b] selection:text-white">
       
-      {/* 1. NAVIGATION BAR */}
+      {/* 1. UPGRADED NAVIGATION BAR WITH NEW QUICK LINKS */}
       <nav className="flex justify-between items-center w-full px-6 md:px-12 py-6 bg-white/90 border-b border-stone-200/60 sticky top-0 z-50 shadow-sm backdrop-blur-md">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleNavigate('home')}>
           <img src="/logo.png" alt="Bitee Logo" width="40" height="40" className="w-10 h-10 object-contain" />
           <h1 className="text-3xl font-black tracking-tight lowercase text-[#3e2723] mt-1">bitee</h1>
           <span className="text-[10px] bg-[#8b5a2b]/10 text-[#8b5a2b] px-2 py-0.5 rounded-full font-bold tracking-wider uppercase ml-2 hidden sm:inline-block">Ecosystem</span>
         </div>
-        <button 
-          onClick={() => window.location.href = "mailto:support@bitee.in"}
-          className="bg-[#3e2723] text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-md hover:bg-[#271816] transition-all transform hover:-translate-y-0.5"
-        >
-          Contact Support
-        </button>
+        
+        <div className="flex items-center gap-4 md:gap-8">
+          <div className="hidden md:flex items-center gap-6">
+            <button onClick={() => handleNavigate('about-us')} className="text-sm font-bold text-stone-600 hover:text-[#8b5a2b] transition-colors">About Us</button>
+            <button onClick={() => handleNavigate('privacy-policy')} className="text-sm font-bold text-stone-600 hover:text-[#8b5a2b] transition-colors">Privacy Policy</button>
+          </div>
+          <button 
+            onClick={() => handleNavigate('support')}
+            className="bg-[#3e2723] text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-md hover:bg-[#271816] transition-all transform hover:-translate-y-0.5"
+          >
+            Contact Support
+          </button>
+        </div>
       </nav>
 
       {/* 2. HERO SECTION WITH CINEMATIC VIDEO BACKGROUND */}
@@ -415,13 +422,17 @@ const LandingPage = ({ setView }) => {
             <p className="whitespace-nowrap">© 2008-2026 Bitee™ Ltd.</p>
           </div>
           
-          {/* Small Protected Entry Link for Admin Dashboard Access */}
-          <div className="flex justify-end mt-8 pt-4 border-t border-stone-900/40 w-full">
+          {/* UPGRADED: BOTTOM QUICK LINKS (Admin, Support, Privacy, About) */}
+          <div className="flex flex-wrap justify-center md:justify-end items-center gap-4 md:gap-6 mt-8 pt-6 border-t border-stone-900/40 w-full">
+             <button onClick={() => handleNavigate('about-us')} className="text-[10px] text-stone-500 hover:text-white transition tracking-widest uppercase font-black">About</button>
+             <button onClick={() => handleNavigate('privacy-policy')} className="text-[10px] text-stone-500 hover:text-white transition tracking-widest uppercase font-black">Privacy Policy</button>
+             <button onClick={() => handleNavigate('support')} className="text-[10px] text-stone-500 hover:text-white transition tracking-widest uppercase font-black">Contact Support</button>
+             
              <button 
                onClick={() => handleNavigate('admin')} 
-               className="text-[10px] text-stone-700 hover:text-[#8b5a2b] transition tracking-widest uppercase font-black bg-stone-950 px-3 py-1.5 rounded-md border border-stone-900"
+               className="text-[10px] text-stone-700 hover:text-[#8b5a2b] transition tracking-widest uppercase font-black bg-stone-950 px-3 py-1.5 rounded-md border border-stone-900 ml-2 md:ml-6"
              >
-               Internal Admin Portal Login
+               Internal Admin Portal
              </button>
           </div>
 
