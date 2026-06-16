@@ -61,7 +61,7 @@ const Support = ({ setView }) => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <button className="bg-[#e03f4a] text-white px-8 py-3.5 rounded-xl font-bold text-sm shadow-md hover:bg-[#c93641] transition-all transform hover:-translate-y-0.5">
+              <button className="bg-[#3e2723] text-white px-8 py-3.5 rounded-xl font-bold text-sm shadow-md hover:bg-[#271816] transition-all transform hover:-translate-y-0.5">
                 Submit feedback
               </button>
               
@@ -84,7 +84,7 @@ const Support = ({ setView }) => {
               <p className="text-stone-500 font-medium text-sm leading-relaxed mb-6">
                 We are committed to the safety of everyone using the Bitee platform.
               </p>
-              <button className="text-[#e03f4a] font-bold text-sm hover:underline transition-all">
+              <button className="text-[#8b5a2b] font-bold text-sm hover:text-[#3e2723] hover:underline transition-all">
                 Report here
               </button>
             </div>
